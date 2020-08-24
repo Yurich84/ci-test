@@ -35,6 +35,7 @@ jobs:
         run: composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
       - name: Setup Laravel
         run: |
+          configure-laravel
           php artisan dusk:install
           php artisan dusk:chrome-driver --all
           ./vendor/laravel/dusk/bin/chromedriver-linux > /dev/null 2>&1 &
