@@ -36,6 +36,7 @@ jobs:
       - name: Setup Laravel
         run: |
           php artisan dusk:install
+          php artisan dusk:chrome-driver --all
           php artisan serve --env=dusk.local > /dev/null 2>&1 &
       - name: Run dusk tests
         run: php artisan dusk --env=dusk.local
