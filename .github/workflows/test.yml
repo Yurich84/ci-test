@@ -11,7 +11,7 @@ jobs:
     name: Build Assets
     runs-on: ubuntu-latest
     steps:
-      - name: Check out my other private repo
+      - name: Check out my repo
         uses: actions/checkout@master
         with:
           repository: Yurich84/laravel-vue-spa-skeleton
@@ -30,18 +30,17 @@ jobs:
     runs-on: ubuntu-latest
     container: docker://chilio/laravel-dusk-ci:stable
     services:
-      mariadb:
-        image: mariadb:latest
-        ports:
-          - 3306/tcp
+      mysql:
+        image: mariadb:10.4
         env:
           MYSQL_USER: root
-          MYSQL_PASSWORD: root
-          MYSQL_DATABASE: skeleton_test
           MYSQL_ROOT_PASSWORD: root
-        options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
+          MYSQL_DATABASE: skeleton_test
+        ports:
+          - 3306/tcp
+        options: --health-cmd="mysqladmin ping" --health-interval=2s --health-timeout=2s --health-retries=2
     steps:
-      - name: Check out my other private repo
+      - name: Check out my repo
         uses: actions/checkout@master
         with:
           repository: Yurich84/laravel-vue-spa-skeleton
