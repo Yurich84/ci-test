@@ -36,7 +36,7 @@ jobs:
       - name: Setup Laravel
         run: |
           cp .env.example .env
-          php artisan dusk:update --detect
+          php artisan dusk:install
           configure-laravel
           start-nginx-ci-project
       - name: Run dusk tests
