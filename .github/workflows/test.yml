@@ -38,7 +38,6 @@ jobs:
           configure-laravel
           php artisan dusk:install
           php artisan dusk:chrome-driver --all
-          ./vendor/laravel/dusk/bin/chromedriver-linux > /dev/null 2>&1 &
           chmod -R 0755 vendor/laravel/dusk/bin/
           php artisan serve --env=dusk.local > /dev/null 2>&1 &
       - name: Run dusk tests
