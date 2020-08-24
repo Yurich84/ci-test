@@ -35,9 +35,7 @@ jobs:
         run: composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
       - name: Setup Laravel
         run: |
-          cp .env.example .env
           php artisan dusk:install
-          configure-laravel
-          start-nginx-ci-project
+          php artisan serve --env=dusk.local > /dev/null 2>&1 &
       - name: Run dusk tests
-        run: php artisan dusk
+        run: php artisan dusk --env=dusk.local
