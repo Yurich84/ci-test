@@ -11,7 +11,8 @@ jobs:
   tests-dusk:
     name: Browser Tests
     runs-on: ubuntu-latest
-    container: docker://chilio/laravel-dusk-ci:php-7.4
+    #container: docker://chilio/laravel-dusk-ci:php-7.4
+    container: docker://zaherg/laravel-dusk:latest
     services:
       mysql:
         image: mariadb:10.4
@@ -35,7 +36,6 @@ jobs:
         run: composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
       - name: Setup Laravel
         run: |
-          configure-laravel
           php artisan dusk:install
           php artisan dusk:chrome-driver --all
           chmod -R 0755 vendor/laravel/dusk/bin/
