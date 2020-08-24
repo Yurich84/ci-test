@@ -11,7 +11,7 @@ jobs:
   tests-dusk:
     name: Browser Tests
     runs-on: ubuntu-latest
-    container: docker://chilio/laravel-dusk-ci:stable
+    container: docker://chilio/laravel-dusk-ci:php-7.4
     services:
       mysql:
         image: mariadb:10.4
