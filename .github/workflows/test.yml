@@ -35,6 +35,7 @@ jobs:
         run: composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
       - name: Setup Laravel
         run: |
+          cp .env.dusk.local .env
           configure-laravel
           php artisan dusk:install
           php artisan dusk:chrome-driver --all
@@ -43,6 +44,7 @@ jobs:
       - name: Run dusk tests
         run: php artisan dusk --env=dusk.local
       - uses: actions/upload-artifact@v2
+        if: failure()
         with:
           name: screenshots
           path: tests/Browser/screenshots
